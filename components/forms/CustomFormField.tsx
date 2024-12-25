@@ -7,6 +7,8 @@ import { Field, useForm, Control } from 'react-hook-form'
 import { z } from 'zod'
 import { Input } from '@/components/ui/input'
 import Image from "next/image";
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
 
 interface CustomFormFieldProps {
     control: Control<z.infer<typeof InitFormSchema>>
@@ -25,9 +27,10 @@ interface CustomFormFieldProps {
     renderSkeleton?: (field: any) => React.ReactNode
 }
 
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const RenderField = ({ field, props }: { field: any, props: CustomFormFieldProps }) => {
-    const { fieldType, iconSrc, iconAlt, placeholder, required, disabled, dateFormat, showTimeSelect } = props
+    const { iconSrc, iconAlt, placeholder, required, disabled, dateFormat, showTimeSelect } = props
     switch (props.fieldType) {
         case FormFieldTypes.INPUT:
             return (
@@ -48,7 +51,55 @@ const RenderField = ({ field, props }: { field: any, props: CustomFormFieldProps
                     </FormControl>
                 </div>
             )
-            case FormFieldTypes.PHONE_INPUT
+        case FormFieldTypes.PHONE_INPUT:
+            return (
+                <FormControl>
+                    <PhoneInput
+                        defaultCountry="IN"
+                        placeholder={placeholder}
+                        international
+                        withCountryCallingCode
+                        value={field.value as string | undefined}
+                        onChange={field.onChange}
+                        className="input-phone" />
+                </FormControl>
+            )
+        case FormFieldTypes.AGE:
+            return (
+                <div className="flex rounded-md border border-dark-500 bg-dark-400">
+
+                    <FormControl>
+                        <Input
+                            type="number"
+                            placeholder={placeholder}
+                            required={required}
+                            disabled={disabled}
+                            {...field}
+                            className="shad-input border-0"
+                        />
+                    </FormControl>
+                </div>
+            )
+        case FormFieldTypes.EMAIL:
+            return (
+                <div className="flex rounded-md border border-dark-500 bg-dark-400">
+                    {iconSrc && (
+                        <div className="flex items-center justify-center p-2">
+                            <Image src={iconSrc} alt={iconAlt || 'icon'} width={20} height={20} />
+                        </div>
+                    )}
+                    <FormControl>
+                        <Input
+                            type="email"
+                            placeholder={placeholder}
+                            required={required}
+                            disabled={disabled}
+                            {...field}
+                            className="shad-input border-0"
+                        />
+                    </FormControl>
+                </div>
+            )
         default:
             return <Input {...field} {...props} />
             break
