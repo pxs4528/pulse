@@ -8,13 +8,15 @@ export default function Home() {
       {/* TODO Verify somehow */}
       <section className="remove-scrollbar container my-auto">
         <div className="sub-container max-w-[496px]">
-          <Image src={pulseLogo} width={1000} height={1000} alt="logo" className="mb-12 h-10 w-fit" />
-
+          <div className="flex items-center flex-wrap gap-4 mb-12 header">
+            <Image src={pulseLogo} width={1000} height={1000} alt="logo" className="h-20 w-fit" />
+            <h1 className="italic text-red-700">pulse</h1>
+          </div>
           <InitPatientForm></InitPatientForm>
 
           <div className="text-14-regular mt-20 flex justify-between">
             <p className="justify-items-end text-dark-600 xl:text-left">
-            © 2024 pulse
+              © 2024 pulse
             </p>
             <Link href="/?admin=true" className="text-green-500"> Admin </Link>
           </div>

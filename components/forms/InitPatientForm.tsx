@@ -3,8 +3,7 @@
 import React from 'react'
 import { z } from 'zod'
 import { Button } from '@/components/ui/button'
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import { Input } from '../ui/input'
+import { Form } from '@/components/ui/form'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FormFieldTypes, InitFormSchema } from '../util'
@@ -31,8 +30,8 @@ const InitPatientForm = () => {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 flex-1">
         <section className='mb-12 space-y-4'>
-          <h1 className='header'>Hi there 👋</h1>
-          <p className='text-dark-700'>Let's schedule your appointment.</p>
+          <h2 className='header'>Hi there 👋</h2>
+          <p className='text-dark-700'>Let&apos;s schedule your appointment.</p>
         </section>
         <CustomFormField
           fieldType={FormFieldTypes.INPUT} 
@@ -51,21 +50,22 @@ const InitPatientForm = () => {
           required={true}
           />
         <CustomFormField
-          fieldType={FormFieldTypes.INPUT} 
+          fieldType={FormFieldTypes.AGE} 
           control={form.control} 
           name="age"
           label="Age"
+          placeholder='1122334455'
           required={true}
           />
         <CustomFormField
-          fieldType={FormFieldTypes.INPUT} 
+          fieldType={FormFieldTypes.PHONE_INPUT} 
           control={form.control} 
           name="phone"
           label="Phone"
           required={true}
           />
         <CustomFormField
-          fieldType={FormFieldTypes.INPUT} 
+          fieldType={FormFieldTypes.EMAIL} 
           control={form.control} 
           name="email"
           label="Email"

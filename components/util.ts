@@ -17,4 +17,7 @@ export enum FormFieldTypes {
   CHECKBOX = 'checkbox',
   DATE = 'date',
   TIME = 'time',
+  PHONE_INPUT = 'phone',
+  AGE = 'age',
+  EMAIL = 'email',
 }
